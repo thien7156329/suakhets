@@ -18,8 +18,18 @@ io.on('connection', function(socket) {
     })
     //lắng nghe khi có người gửi tin nhắn
     socket.on('newMessage', data => {
+        console.log(data)
         //gửi lại tin nhắn cho tất cả các user dang online
         io.sockets.emit('newMessage', {
+            id: data.id,
+            data: data.data,
+            user: data.user,
+            url: data.url
+        });
+    })
+    socket.on('listen', data => {
+        //gửi lại tin nhắn cho tất cả các user dang online
+        io.sockets.emit('listen', {
             id: data.id,
             data: data.data,
             user: data.user
