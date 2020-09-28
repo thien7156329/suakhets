@@ -35,6 +35,12 @@ io.on('connection', function(socket) {
             user: data.user
         });
     })
+    socket.on('typing', data => {
+        //gửi lại tin nhắn cho tất cả các user dang online
+        io.sockets.emit('listen', {
+            user: data.user
+        });
+    })
     //lắng nghe khi có người login
     socket.on('login', data => {
         // kiểm tra xem tên đã tồn tại hay chưa
