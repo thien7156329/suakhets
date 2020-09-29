@@ -37,7 +37,7 @@ io.on('connection', function(socket) {
     })
     socket.on('typing', data => {
         //gửi lại tin nhắn cho tất cả các user dang online
-        io.sockets.emit('listen', {
+        io.sockets.emit('typing', {
             user: data.user
         });
     })
