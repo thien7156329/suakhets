@@ -4,9 +4,19 @@ var _findIndex = require('lodash/findIndex') // npm install lodash --save
 var server = require('http').Server(app);
 var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 6969);
 var io = require('socket.io')(server);
+var fs = require('fs');
+var cors = require('cors')
 server.listen(port, () => console.log('Server running in port ' + port));
 
 var userOnline = []; //danh sách user dang online
+app.options('*', cors()) // include before other routes
+
+app.all('/*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 io.on('connection', function(socket) {
     console.log(socket.id + ': connected');
     //lắng nghe khi người dùng thoát
@@ -59,6 +69,27 @@ io.on('connection', function(socket) {
 
 });
 
+var corsOptions = {
+    origin: 'localhost:3000',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
 app.get('/', (req, res) => {
-    res.send("Home page. Server running okay.");
+    console.log('123')
+    // res.send("Home page. Server running okay.");
 })
+
+app.post('/write', (req, res) => {
+    fs.writeFile('clientchat.txt', req.data, function (err, data) {
+        if (err) throw err;
+        return data
+    });
+})
+
+app.get('/read', (req, res) => {
+    fs.readFile('clientchat.txt', 'utf8', function(err, data) {
+        console.log(data)
+        return data;
+    });
+})
+

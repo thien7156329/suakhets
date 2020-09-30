@@ -4,7 +4,7 @@
   "description": "begin",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,14 @@
   },
   "homepage": "https://github.com/ththth0303/server-chat#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "lodash": "^4.17.4",
     "request": "^2.81.0",
     "socket.io": "^2.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
