@@ -6,6 +6,10 @@ var port = (process.env.OPENSHIFT_NODEJS_PORT || process.env.PORT || 6969);
 var io = require('socket.io')(server);
 var fs = require('fs');
 var cors = require('cors')
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 server.listen(port, () => console.log('Server running in port ' + port));
 
 var userOnline = []; //danh sách user dang online
@@ -28,11 +32,10 @@ io.on('connection', function(socket) {
     })
     //lắng nghe khi có người gửi tin nhắn
     socket.on('newMessage', data => {
-        console.log(data)
         //gửi lại tin nhắn cho tất cả các user dang online
         io.sockets.emit('newMessage', {
             id: data.id,
-            data: data.data,
+            message: data.message,
             user: data.user,
             url: data.url
         });
@@ -41,7 +44,7 @@ io.on('connection', function(socket) {
         //gửi lại tin nhắn cho tất cả các user dang online
         io.sockets.emit('listen', {
             id: data.id,
-            data: data.data,
+            message: data.message,
             user: data.user
         });
     })
@@ -80,16 +83,19 @@ app.get('/', (req, res) => {
 })
 
 app.post('/write', (req, res) => {
-    fs.writeFile('clientchat.txt', req.data, function (err, data) {
-        if (err) throw err;
-        return data
+    let data = req.body
+    fs.readFile('clientchat.txt', 'utf8', function(err, dataRead) {
+        let object = dataRead && JSON.parse(dataRead) || []
+        object.push(data)
+        fs.writeFile('clientchat.txt', JSON.stringify(object) , function (err) {
+            if (err) throw err;
+        });
     });
 })
 
 app.get('/read', (req, res) => {
     fs.readFile('clientchat.txt', 'utf8', function(err, data) {
-        console.log(data)
-        return data;
+        return res.json(data)
     });
 })
 
