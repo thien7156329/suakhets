@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 [{"id":1,"userName":"T. SmartHome","score":"hi man","url":"123"},{"id":"1","userName":"param2chriwil","score":"11","url":"Good"}]
+=======
+[]
+>>>>>>> 9389ef3b7764ee72e901cdd99fc2e78e46e6aab9

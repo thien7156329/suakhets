@@ -2214,7 +2214,7 @@ design by https://www.behance.net/vahanhovh
         var getScore = () =>{
                 $.ajax({
                 type: 'GET',
-                url: 'http://localhost:6969/readScore',
+                url: 'https://suakhet.herokuapp.com/readScore',
                 headers: {'Access-Control-Allow-Origin': '*' },
                 contentType: 'application/json; charset=utf-8',
                 success: function(data){
@@ -2242,7 +2242,7 @@ design by https://www.behance.net/vahanhovh
         var highScore = (name, score) =>{
             $.ajax({
                 type: 'POST',
-                url: 'http://localhost:6969/writeScore',
+                url: 'https://suakhet.herokuapp.com/writeScore',
                 contentType: 'application/json; charset=utf-8',
                 dataType:"json",
                 data: JSON.stringify({id: "1", userName: name, score: score, url: "Good"}),
