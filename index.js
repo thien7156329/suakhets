@@ -99,3 +99,39 @@ app.get('/read', (req, res) => {
     });
 })
 
+app.post('/writeScore', (req, res) => {
+    let data = req.body
+    console.log(data)
+    fs.readFile('high_score.txt', 'utf8', function(err, dataRead) {
+        let object = dataRead && JSON.parse(dataRead) || []
+        object = object.sort((a, b) => a.score - b.score)
+        if(object.length > 4){
+            if(parseInt(data.score) > parseInt(object[0].score)){
+                object[0].userName = data.userName
+                object[0].score = data.score
+                object[0].url = data.url
+                fs.writeFile('high_score.txt', JSON.stringify(object) , function (err) {
+                    if (err) throw err;
+                });
+            }
+            else {
+                return
+            }
+        }else{
+            object.push(data)
+            fs.writeFile('high_score.txt', JSON.stringify(object) , function (err) {
+                if (err) throw err;
+            });
+        }
+    });
+})
+
+app.get('/readScore', (req, res) => {
+    fs.readFile('high_score.txt', 'utf8', function(err, data) {
+        let objectScore = data && JSON.parse(data) || []
+        objectScore = objectScore.sort((a, b) => b.score - a.score)
+        return res.json(JSON.stringify(objectScore))
+    });
+})
+
+

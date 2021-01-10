@@ -1,0 +1,2325 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>ThienStyleV2</title>
+    <link rel="stylesheet/scss" type="text/css" href="test.scss">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TimelineMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+
+
+    <style>
+        .bubble {
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 4px;
+        }
+
+        .bubble-1 {
+            height: 15px;
+            width: 15px;
+            top: 21px;
+            left: 59px;
+        }
+
+        .bubble-2 {
+            height: 27px;
+            width: 27px;
+            top: 36px;
+            left: 16px;
+        }
+
+        .bubble-3 {
+            height: 21px;
+            width: 21px;
+            top: 63px;
+            left: 49px;
+        }
+
+        .bubble-4 {
+            height: 15px;
+            width: 15px;
+            top: 98px;
+            left: 37px;
+        }
+
+        .bubble-5 {
+            height: 5px;
+            width: 5px;
+            top: 116px;
+            left: 20px;
+            background-color: transparent;
+            border-style: solid;
+        }
+
+        .bubble-6 {
+            height: 6px;
+            width: 6px;
+            top: 128px;
+            left: 63px;
+        }
+
+        .bubble-7 {
+            height: 27px;
+            width: 27px;
+            top: 150px;
+            left: 52px;
+        }
+
+        .bubble-8 {
+            height: 19px;
+            width: 19px;
+            top: 154px;
+            left: 18px;
+        }
+
+        .bubble-9 {
+            height: 10px;
+            width: 10px;
+            top: 189px;
+            left: 13px;
+        }
+
+        .bubble-10 {
+            height: 5px;
+            width: 5px;
+            top: 199px;
+            left: 52px;
+            background-color: transparent;
+            border-style: solid;
+        }
+
+        .bubble-11 {
+            height: 21px;
+            width: 21px;
+            top: 220px;
+            left: 29px;
+        }
+
+        .bubble-12 {
+            height: 21px;
+            width: 21px;
+            top: 263px;
+            left: 48px;
+        }
+
+        .bubble-13 {
+            height: 5px;
+            width: 5px;
+            top: 275px;
+            left: 16px;
+            background-color: transparent;
+            border-style: solid;
+        }
+
+        .bubble-14 {
+            height: 15px;
+            width: 15px;
+            top: 296px;
+            left: 34px;
+        }
+
+        .triangle {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+        }
+
+        .triangle-1 {
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 4px;
+            height: 10px;
+            width: 10px;
+            top: 22px;
+            left: 55px;
+        }
+
+        .triangle-2 {
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 15px;
+            top: 27px;
+        }
+
+        .triangle-2:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-bottom: 5px solid transparent;
+            top: 6px;
+            left: -3.5px;
+            transition: border-bottom-color 0.4s ease;
+        }
+
+        .red .triangle-2:after {
+            border-bottom-color: #fc5c82;
+        }
+
+        .yellow .triangle-2:after {
+            border-bottom-color: #fcd45c;
+        }
+
+        .purple .triangle-2:after {
+            border-bottom-color: #9174f5;
+        }
+
+        .triangle-3 {
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-bottom: 19px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 43px;
+            top: 60px;
+        }
+
+        .triangle-3:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 9px solid transparent;
+            top: 6px;
+            left: -4.75px;
+            transition: border-bottom-color 0.4s ease;
+        }
+
+        .red .triangle-3:after {
+            border-bottom-color: #fc5c82;
+        }
+
+        .yellow .triangle-3:after {
+            border-bottom-color: #fcd45c;
+        }
+
+        .purple .triangle-3:after {
+            border-bottom-color: #9174f5;
+        }
+
+        .triangle-4 {
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 3px;
+            height: 8px;
+            width: 8px;
+            top: 61px;
+            left: 17px;
+            background-color: transparent;
+            border-style: solid;
+        }
+
+        .triangle-5 {
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-bottom: 8px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 25px;
+            top: 101px;
+            transform: rotate(180deg);
+        }
+
+        .triangle-6 {
+            border-left: 4px solid transparent;
+            border-right: 4px solid transparent;
+            border-bottom: 6px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 60px;
+            top: 103px;
+            transform: rotate(-90deg);
+        }
+
+        .triangle-7 {
+            border-left: 12.5px solid transparent;
+            border-right: 12.5px solid transparent;
+            border-bottom: 19px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 17px;
+            top: 126px;
+            transform: rotate(180deg);
+        }
+
+        .triangle-8 {
+            border-left: 10.5px solid transparent;
+            border-right: 10.5px solid transparent;
+            border-bottom: 16px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 50px;
+            top: 149px;
+        }
+
+        .triangle-9 {
+            border-left: 5.5px solid transparent;
+            border-right: 5.5px solid transparent;
+            border-bottom: 8px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 21px;
+            top: 177px;
+        }
+
+        .triangle-10 {
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 4px;
+            height: 10px;
+            width: 10px;
+            top: 177px;
+            left: 60px;
+        }
+
+        .triangle-11 {
+            border-left: 9px solid transparent;
+            border-right: 9px solid transparent;
+            border-bottom: 13px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 33px;
+            top: 213px;
+            transform: rotate(180deg);
+        }
+
+        .triangle-12 {
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 2px;
+            height: 10px;
+            width: 10px;
+            top: 233px;
+            left: 65px;
+            background-color: transparent;
+            border-style: solid;
+        }
+
+        .triangle-13 {
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 4px;
+            height: 10px;
+            width: 10px;
+            top: 250px;
+            left: 22px;
+        }
+
+        .triangle-14 {
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 14px solid rgba(0, 0, 0, 0.12);
+            background-color: transparent;
+            left: 45px;
+            top: 270px;
+            transform: rotate(180deg);
+        }
+
+        .triangle-14:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            border-left: 3px solid transparent;
+            border-right: 3px solid transparent;
+            border-bottom: 5px solid transparent;
+            top: 6px;
+            left: -3.5px;
+            transition: border-bottom-color 0.4s ease;
+        }
+
+        .red .triangle-14:after {
+            border-bottom-color: #fc5c82;
+        }
+
+        .yellow .triangle-14:after {
+            border-bottom-color: #fcd45c;
+        }
+
+        .purple .triangle-14:after {
+            border-bottom-color: #9174f5;
+        }
+
+        .stick .block {
+            position: absolute;
+            overflow: hidden;
+            z-index: 999;
+            border-radius: 7px;
+        }
+
+        .stick .block .inner {
+            border-radius: 7px;
+            background-color: rgba(0, 0, 0, 0.12);
+            border-color: rgba(0, 0, 0, 0.12);
+            border-width: 3px;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        .stick .block:nth-child(2n+1) .inner-2 {
+            left: -200%;
+        }
+
+        .stick .block:nth-child(2n+2) .inner-2 {
+            left: 200%;
+        }
+
+        .stick .block-1 {
+            height: 16px;
+            width: 31px;
+            top: 16px;
+            left: 30px;
+        }
+
+        .stick .block-1 .inner {
+            background-color: transparent !important;
+            border-style: solid;
+            box-sizing: border-box;
+        }
+
+        .stick .block-2 {
+            height: 14px;
+            width: 42px;
+            top: 50px;
+            left: 15px;
+        }
+
+        .stick .block-3 {
+            height: 18px;
+            width: 9px;
+            top: 73px;
+            left: 64px;
+        }
+
+        .stick .block-4 {
+            height: 9px;
+            width: 14px;
+            top: 84px;
+            left: 26px;
+        }
+
+        .stick .block-5 {
+            height: 15px;
+            width: 15px;
+            top: 109px;
+            left: 45px;
+        }
+
+        .stick .block-5 .inner {
+            border-radius: 50%;
+        }
+
+        .stick .block-6 {
+            height: 9px;
+            width: 27px;
+            top: 135px;
+            left: 19px;
+        }
+
+        .stick .block-7 {
+            height: 12px;
+            width: 12px;
+            top: 144px;
+            left: 60px;
+        }
+
+        .stick .block-7 .inner {
+            border-radius: 50%;
+            border-style: solid;
+            box-sizing: border-box;
+            background-color: transparent;
+        }
+
+        .stick .block-8 {
+            height: 27px;
+            width: 14px;
+            top: 164px;
+            left: 24px;
+        }
+
+        .stick .block-9 {
+            height: 8px;
+            width: 8px;
+            top: 188px;
+            left: 64px;
+        }
+
+        .stick .block-10 {
+            height: 12px;
+            width: 22px;
+            top: 219px;
+            left: 11px;
+        }
+
+        .stick .block-10 .inner {
+            background-color: transparent !important;
+            border-style: solid;
+            box-sizing: border-box;
+        }
+
+        .stick .block-11 {
+            height: 22px;
+            width: 22px;
+            top: 226px;
+            left: 50px;
+        }
+
+        .stick .block-11 .inner {
+            border-radius: 50%;
+        }
+
+        .stick .block-12 {
+            height: 18px;
+            width: 9px;
+            top: 248px;
+            left: 26px;
+        }
+
+        .stick .block-13 {
+            height: 8px;
+            width: 8px;
+            top: 278px;
+            left: 50px;
+        }
+
+        .stick .block-13 .inner {
+            border-radius: 50%;
+        }
+
+        .stick .block-14 {
+            height: 12px;
+            width: 22px;
+            top: 297px;
+            left: 18px;
+        }
+
+        .stick .block-14 .inner {
+            background-color: transparent !important;
+            border-style: solid;
+            box-sizing: border-box;
+        }
+
+        .stick .block-15 {
+            height: 9px;
+            width: 27px;
+            top: 307px;
+            left: 48px;
+        }
+
+		.stick.selected {
+			border: 3px solid white;
+		}
+
+        body {
+            background-color: #28DAD4;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: "Roboto", sans-serif;
+        }
+
+        a {
+            cursor: url(https://greghub.github.io/coloron/public/svg/cursor.svg), pointer;
+        }
+
+        a:focus,
+        a:active {
+            cursor: url(https://greghub.github.io/coloron/public/svg/cursor-tap.svg), pointer;
+        }
+
+        .container {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        .waves,
+        .mounts {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 0;
+        }
+
+        .waves div,
+        .mounts div {
+            position: absolute;
+            width: 100%;
+        }
+
+        .clouds {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 77px;
+            height: 151px;
+            background: url(https://greghub.github.io/coloron/public/svg/clouds.svg) repeat-x;
+            background-position-x: 170px;
+        }
+
+        .top_wave {
+            background: url(https://greghub.github.io/coloron/public/svg/top_wave.png) repeat-x 0 -1px;
+            height: 35px;
+            bottom: 0;
+            z-index: 10001;
+        }
+
+        .wave1 {
+            background: url(https://greghub.github.io/coloron/public/svg/wave1.svg) repeat-x;
+            height: 150px;
+            bottom: 0;
+            z-index: 23;
+        }
+
+        .wave2 {
+            background: url(https://greghub.github.io/coloron/public/svg/wave2.svg) repeat-x;
+            height: 180px;
+            bottom: 30px;
+            z-index: 22;
+        }
+
+        .wave3 {
+            background: url(https://greghub.github.io/coloron/public/svg/wave3.svg) repeat-x;
+            height: 180px;
+            bottom: 90px;
+            z-index: 21;
+        }
+
+        .wave4 {
+            background: url(https://greghub.github.io/coloron/public/svg/wave4.svg) repeat-x;
+            height: 180px;
+            bottom: 120px;
+            z-index: 20;
+        }
+
+        .mount1 {
+            background: url(https://greghub.github.io/coloron/public/svg/mount1.svg) repeat-x;
+            height: 150px;
+            bottom: 280px;
+            z-index: 11;
+        }
+
+        .mount2 {
+            background: url(https://greghub.github.io/coloron/public/svg/mount2.svg) repeat-x;
+            height: 150px;
+            bottom: 290px;
+            z-index: 10;
+        }
+
+        .noise {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            z-index: 1010;
+            background: url(https://greghub.github.io/coloron/public/svg/noise.png);
+        }
+
+        .glow {
+            position: absolute;
+            left: -350px;
+            top: -350px;
+            width: 800px;
+            height: 800px;
+            background-color: rgba(81, 237, 200, 0.34);
+            border-radius: 50%;
+            box-shadow: 0 0 100px 100px rgba(81, 237, 200, 0.34);
+            z-index: 1010;
+        }
+
+        .sun {
+            position: relative;
+            left: 50%;
+            top: 50%;
+            width: 1px;
+            height: 1px;
+            background-color: #ffe345;
+            border-radius: 50%;
+            box-shadow: 0 0 32px 32px #ffe345, 0 0 150px 150px rgba(103, 244, 210, 0.4);
+        }
+
+        .small-glow {
+            z-index: 99;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.34);
+            box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.34);
+        }
+
+        .small-glow.yellow {
+            background-color: rgba(255, 227, 69, 0.34);
+            box-shadow: 0 0 4px 4px rgba(255, 227, 69, 0.34);
+        }
+
+        .sticks {
+            z-index: 1011;
+            outline: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .stick {
+            height: 362px;
+            width: 90px;
+            border-radius: 14px;
+            background-image: url(https://greghub.github.io/coloron/public/svg/noise.png);
+            position: relative;
+            overflow: hidden;
+            float: left;
+            margin-right: 90px;
+            transition: background-color 0.4s ease;
+            cursor: url(https://greghub.github.io/coloron/public/svg/cursor.svg), pointer;
+        }
+
+        .stick:focus,
+        .stick:active {
+            cursor: url(https://greghub.github.io/coloron/public/svg/cursor-tap.svg), pointer;
+        }
+
+        .stick.red {
+            background-color: #FF4571;
+        }
+
+        .stick.yellow {
+            background-color: #FFD145;
+        }
+
+        .stick.purple {
+            background-color: #8260F6;
+        }
+
+        .stick.inactive {
+            background-color: #4C4660;
+        }
+
+        .ball,
+        .ball-demo {
+            background: url(https://greghub.github.io/coloron/public/svg/ball.svg) right bottom;
+            background-size: 64px 64px;
+            width: 53px;
+            height: 53px;
+            z-index: 1011;
+            background-color: #FF4571;
+            border-radius: 50%;
+        }
+
+        .ball {
+            margin-bottom: 250px;
+        }
+
+        .controls {
+            z-index: 999999;
+            position: relative;
+        }
+
+        .game-full-flex {
+            position: fixed;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9998;
+        }
+
+        .start-game .start-game-top {
+            min-height: 20%;
+        }
+
+        .start-game .start-game-top .play-full-page {
+            display: none;
+            border: 3px solid #fff;
+            border-radius: 100px;
+            color: #fff;
+            width: 260px;
+            height: 50px;
+            font-size: 28px;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: -1px;
+            line-height: 52px;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin-top: 24px;
+        }
+
+        .start-game .start-game-top .play-full-page:hover {
+            opacity: 0.7;
+        }
+
+        .start-game .logo-holder {
+            width: 1003px;
+            height: 162px;
+            background-color: #4C4660;
+            border: 4px solid #FF4571;
+            border-radius: 68px;
+            text-align: center;
+            margin-top: -10%;
+        }
+
+        .start-game .logo-holder .logo {
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 900;
+            font-size: 100px;
+            letter-spacing: -0.1em;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            text-align: center;
+        }
+
+        .start-game .logo-holder .logo span {
+            margin-left: -8px;
+            margin-right: -8px;
+        }
+
+        .start-game .logo-holder .play-button {
+            display: inline-block;
+            background-color: #FF4571;
+            border: 4px solid #fff;
+            border-radius: 100px;
+            color: #fff;
+            width: 200px;
+            height: 56px;
+            font-size: 42px;
+            text-align: center;
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 56px;
+            text-decoration: none;
+        }
+
+        .start-game .logo-holder .play-button:hover {
+            background-color: #ff5f84;
+        }
+
+        .start-game .logo-holder .hint {
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .start-game .logo-holder .hint span {
+            color: #FF4571;
+        }
+
+        .start-game .how-to-play {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+
+        .start-game .how-to-play .section-1,
+        .start-game .how-to-play .section-3 {
+            flex: 1;
+        }
+
+        .start-game .how-to-play .section-1 .content,
+        .start-game .how-to-play .section-3 .content {
+            justify-content: center;
+        }
+
+        .start-game .how-to-play h4 {
+            color: #fff;
+            font-weight: 400;
+            font-size: 22px;
+            text-align: center;
+        }
+
+        .start-game .how-to-play .content {
+            height: 200px;
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .start-game .how-to-play .bar {
+            width: 60px;
+            border-radius: 7px;
+            margin-top: auto;
+            transition: background-color 0.4s ease;
+        }
+
+        .start-game .how-to-play .bar.bar-1 {
+            height: 180px;
+            background: #FF4571;
+        }
+
+        .start-game .how-to-play .bar.bar-2 {
+            height: 120px;
+            background: #FFD145;
+        }
+
+        .start-game .how-to-play .bar.bar-3 {
+            height: 150px;
+            background: #4C4660;
+        }
+
+        .start-game .how-to-play .section-2 .bar {
+            cursor: url(https://greghub.github.io/coloron/public/svg/cursor.svg), pointer;
+        }
+
+        .start-game .how-to-play .section-2 .bar:focus,
+        .start-game .how-to-play .section-2 .bar:active {
+            cursor: url(https://greghub.github.io/coloron/public/svg/cursor-tap.svg), pointer;
+        }
+
+        .start-game .how-to-play .section-3 .ball-demo {
+            background-color: #815FF8;
+        }
+
+        .start-game .how-to-play .section-3 .bar-1 {
+            height: 120px;
+            background-color: #815FF8;
+        }
+
+        .stop-game {
+            justify-content: center;
+        }
+
+        .stop-game .score-container {
+            background-color: #4C4660;
+            width: 433px;
+            height: 386px;
+            border-radius: 38px;
+            text-align: center;
+        }
+
+        .stop-game .score-container h1 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.1em;
+            margin-top: 20px;
+            margin-bottom: 4px;
+            font-size: 64px;
+        }
+
+        .stop-game .score-container .final-score {
+            color: #FFE345;
+            font-weight: 900;
+            font-size: 130px;
+            letter-spacing: -6px;
+            line-height: 110px;
+        }
+
+        .stop-game .score-container .result {
+            color: #FF4571;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .stop-game .score-container h4 {
+            color: #fff;
+            margin-top: 12px;
+        }
+
+        .stop-game .score-container .tweet {
+            background: #fff;
+            padding: 8px 20px;
+            border-radius: 4px;
+            color: #55ACEE;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 24px;
+            display: inline-block;
+        }
+
+        .stop-game .score-container .tweet:hover {
+            background-color: #55ACEE;
+            color: #fff;
+        }
+
+        .stop-game .score-container .tweet i {
+            font-size: 24px;
+            top: 2px;
+            right: 2px;
+            position: relative;
+        }
+
+        .stop-game .score-container .play-again {
+            background-color: #FF4571;
+            border: 2px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-size: 26px;
+            padding: 6px 24px;
+            border-radius: 22px;
+            margin: 6px 4px;
+            display: inline-block;
+        }
+
+        .stop-game .score-container .play-again:hover {
+            background-color: #ff5f84;
+        }
+
+        .stop-game .score-container .main-menu {
+            background-color: #44BFA3;
+            border: 2px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-size: 26px;
+            padding: 6px 24px;
+            border-radius: 22px;
+            margin: 6px 4px;
+            display: inline-block;
+        }
+
+        .stop-game .score-container .main-menu:hover {
+            background-color: #57c6ac;
+        }
+
+        .modal-score {
+            justify-content: center;
+        }
+
+        .modal-score .score-container {
+            background-color: #4C4660;
+            width: 433px;
+            height: 386px;
+            border-radius: 38px;
+            text-align: center;
+        }
+
+        .modal-score .score-container h1 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.1em;
+            margin-top: 20px;
+            margin-bottom: 4px;
+            font-size: 64px;
+        }
+
+        .modal-score .score-container .final-score {
+            color: #FFE345;
+            font-weight: 900;
+            font-size: 130px;
+            letter-spacing: -6px;
+            line-height: 110px;
+        }
+
+        .modal-score .score-container .result {
+            color: #FF4571;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .modal-score .score-container h4 {
+            color: #fff;
+            margin-top: 12px;
+        }
+
+        .modal-score .score-container .tweet {
+            background: #fff;
+            padding: 8px 20px;
+            border-radius: 4px;
+            color: #55ACEE;
+            text-decoration: none;
+            font-size: 18px;
+            line-height: 24px;
+            display: inline-block;
+        }
+
+        .modal-score .score-container .tweet:hover {
+            background-color: #55ACEE;
+            color: #fff;
+        }
+
+        .modal-score .score-container .tweet i {
+            font-size: 24px;
+            top: 2px;
+            right: 2px;
+            position: relative;
+        }
+
+        .modal-score .score-container .play-again {
+            background-color: #FF4571;
+            border: 2px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-size: 26px;
+            padding: 6px 24px;
+            border-radius: 22px;
+            margin: 6px 4px;
+            display: inline-block;
+        }
+
+        .modal-score .score-container .play-again:hover {
+            background-color: #ff5f84;
+        }
+
+        .modal-score .score-container .main-menu {
+            background-color: #44BFA3;
+            border: 2px solid #fff;
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 900;
+            letter-spacing: -1px;
+            font-size: 26px;
+            padding: 6px 24px;
+            border-radius: 22px;
+            margin: 6px 4px;
+            display: inline-block;
+        }
+
+        .modal-score .score-container .main-menu:hover {
+            background-color: #57c6ac;
+        }
+
+        .scene {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: fixed;
+            z-index: 9997;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scene .ball-holder {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-left: 558px;
+        }
+
+        .scene .score {
+            position: fixed;
+            right: 54px;
+            top: 20px;
+            color: #33485F;
+            font-size: 90px;
+            font-weight: 900;
+            letter-spacing: -0.1em;
+        }
+
+        .scene .learn-to-play {
+            z-index: 9999;
+            display: inline-block;
+            text-align: center;
+            position: relative;
+            top: 20%;
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 700;
+            letter-spacing: -2px;
+            opacity: 0;
+        }
+
+        .splash {
+            display: none;
+        }
+
+        @media print {
+            .splash {
+                display: block;
+                position: fixed;
+                z-index: 99999;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: #28DAD4;
+                background-image: url(https://greghub.github.io/coloron/public/images/coloron-image.png);
+                background-size: auto 100%;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+        }
+
+        .nominee {
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 9999;
+        }
+        .section-customize h1 {
+            font-size: 18px;
+            color: #e1e1e1;
+            text-align: center;
+            padding: 5px;
+        }
+        .section-customize h1 svg {
+            width: 25px;
+            height: 26px;
+            position: relative;
+            top: 3px;
+            margin-right: 6px;
+            vertical-align: baseline;
+        }
+        .section-customize ol {
+            counter-reset: leaderboard;
+            list-style-type: none;
+        }
+        .section-customize ol li {
+            position: relative;
+            z-index: 1;
+            font-size: 14px;
+            counter-increment: leaderboard;
+            padding: 18px 10px 18px 50px;
+            cursor: pointer;
+            backface-visibility: hidden;
+            transform: translateZ(0) scale(1, 1);
+        }
+        .section-customize ol li::before {
+            content: counter(leaderboard);
+            position: absolute;
+            z-index: 2;
+            top: 15px;
+            left: 15px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            color: #c24448;
+            background: #fff;
+            border-radius: 20px;
+            text-align: center;
+        }
+        .section-customize ol li mark {
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            padding: 18px 10px 18px 50px;
+            margin: 0;
+            background: none;
+            color: #fff;
+        }
+        .section-customize ol li mark::before, .section-customize ol li mark::after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            bottom: 26px;
+            left: -9px;
+            border-top: 10px solid #c24448;
+            border-left: 10px solid transparent;
+            transition: all 0.1s ease-in-out;
+            opacity: 0;
+        }
+        .section-customize ol li mark::after {
+            left: auto;
+            right: -9px;
+            border-left: none;
+            border-right: 10px solid transparent;
+        }
+        .section-customize ol li small {
+            position: relative;
+            z-index: 2;
+            display: block;
+            text-align: right;
+            color:white;
+        }
+        .section-customize ol li::after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fa6855;
+            box-shadow: 0 3px 0 rgba(0, 0, 0, .08);
+            transition: all 0.3s ease-in-out;
+            opacity: 0;
+        }
+        .section-customize ol li:nth-child(1) {
+            background: #fa6855;
+        }
+        .section-customize ol li:nth-child(1)::after {
+            background: #fa6855;
+        }
+        .section-customize ol li:nth-child(2) {
+            background: #e0574f;
+        }
+        .section-customize ol li:nth-child(2)::after {
+            background: #e0574f;
+            box-shadow: 0 2px 0 rgba(0, 0, 0, .08);
+        }
+        .section-customize ol li:nth-child(2) mark::before, .section-customize ol li:nth-child(2) mark::after {
+            border-top: 6px solid #ba4741;
+            bottom: 29px;
+        }
+        .section-customize ol li:nth-child(3) {
+            background: #d7514d;
+        }
+        .section-customize ol li:nth-child(3)::after {
+            background: #d7514d;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, .11);
+        }
+        .section-customize ol li:nth-child(3) mark::before, .section-customize ol li:nth-child(3) mark::after {
+            border-top: 6px solid #b0433f;
+            bottom: 29px;
+        }
+        .section-customize ol li:nth-child(4) {
+            background: #cd4b4b;
+        }
+        .section-customize ol li:nth-child(4)::after {
+            background: #cd4b4b;
+            box-shadow: 0 -1px 0 rgba(0, 0, 0, .15);
+        }
+        .section-customize ol li:nth-child(4) mark::before, .section-customize ol li:nth-child(4) mark::after {
+            top: -7px;
+            bottom: auto;
+            border-top: none;
+            border-bottom: 6px solid #a63d3d;
+        }
+        .section-customize ol li:nth-child(5) {
+            background: #c24448;
+            border-radius: 0 0 10px 10px;
+        }
+        .section-customize ol li:nth-child(5)::after {
+            background: #c24448;
+            box-shadow: 0 -2.5px 0 rgba(0, 0, 0, .12);
+            border-radius: 0 0 10px 10px;
+        }
+        .section-customize ol li:nth-child(5) mark::before, .section-customize ol li:nth-child(5) mark::after {
+            top: -9px;
+            bottom: auto;
+            border-top: none;
+            border-bottom: 8px solid #993639;
+        }
+        .section-customize ol li:hover {
+            z-index: 2;
+            overflow: visible;
+        }
+        .section-customize ol li:hover::after {
+            opacity: 1;
+            transform: scaleX(1.06) scaleY(1.03);
+        }
+        .section-customize ol li:hover mark::before, .section-customize ol li:hover mark::after {
+            opacity: 1;
+            transition: all 0.35s ease-in-out;
+        }
+        .the-most {
+            position: fixed;
+            z-index: 1;
+            bottom: 0;
+            left: 0;
+            width: 50vw;
+            max-width: 200px;
+            padding: 10px;
+        }
+        .the-most img {
+            max-width: 100%;
+        }
+        .section-customize{
+            min-width: 300px;
+        }
+        .leatherboard{
+            z-index: 99888;
+            position: absolute; 
+            top: 0px;
+            right: 0px;
+            background: linear-gradient(to bottom, #3a404d, #181c26);
+            border-radius: 10px;
+            box-shadow: 0 0px 0px rgba(62, 9, 11, 0.3);
+        }
+        .section-customize ol{
+            padding: 0px;
+            margin: 0px;
+        }
+        .hide{
+            display: none;
+        }
+        .txtName{
+            height: 30px;
+            width: 70%;
+            margin: 0px 0px 35px 0px;
+            font-size: 20px;
+            font-weight: bold;
+            color: dimgray;
+        }
+        .modal-score .score-container h2 {
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: -0.1em;
+            margin-bottom: 4px;
+            font-size: 33px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--
+design by https://www.behance.net/vahanhovh
+-->
+    <div class="splash"></div>
+    <div class="container">
+
+        <div class="leatherboard">
+            <div class="section-customize">
+                <h1>
+                    <svg class="ico-cup">
+                    <use xlink:href="#cup"></use>
+                    </svg>
+                    Top 5 Players
+                </h1>
+                <ol class="score-game">
+                </ol>
+                </div>
+        </div>
+
+        <div class="start-game game-full-flex" id="start-game">
+
+            <div class="start-game-top"></div>
+
+            <div class="logo-holder">
+                <p class="logo">
+                    <span>T</span>
+                    <span>H</span>
+                    <span>I</span>
+                    <span>E</span>
+                    <span>N</span>
+                    <span>S</span>
+                    <span>T</span>
+                    <span>Y</span>
+                    <span>L</span>
+                    <span>E</span>
+                </p>
+                <a class="play-button" href="#" onclick="game.start()">Play</a>
+                <h4 class="hint">Hướng Dẫn: <span>Cột màu đỏ</span> lúc nào cũng xuất hiện trước</h4>
+            </div>
+
+            <div class="how-to-play">
+                <div class="section section-1">
+                    <h4>Viên bi<br>Tự động đổi màu</h4>
+                    <div class="content">
+                        <div class="ball-demo" id="ball-demo"></div>
+                    </div>
+                </div>
+                <div class="section section-2">
+                    <h4>Nhấp vào cột <br>Đổi màu cột cho giống màu viên bi</h4>
+                    <div class="content">
+                        <div class="bar bar-1" data-index="0"></div>
+                        <div class="bar bar-2"></div>
+                        <div class="bar bar-3"></div>
+                    </div>
+                </div>
+                <div class="section section-3">
+                    <h4>Viên Bi Với Cột<br>Phải Giống Nhau</h4>
+                    <div class="content">
+                        <div class="ball-demo" id="ball-demo"></div>
+                        <div class="bar bar-1"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="stop-game game-full-flex">
+
+            <div class="score-container">
+
+                <h1>Thiện Style</h1>
+
+                <div class="final-score"></div>
+                <div class="result"></div>
+
+                <h4>Thông Tin Liên Lạc</h4>
+
+                <p>
+                    <a class="tweet" target="_blank" href="https://www.facebook.com/">
+                        <i class="fa fa-twitter" aria-hidden="true"></i> FaceBook
+                    </a>
+                </p>
+
+                <div>
+                    <a class="play-again" href="#" onclick="game.start()">Chơi Lại</a>
+                    <a class="main-menu" href="#" onclick="game.intro()">Chai Lợi</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal-score game-full-flex">
+
+            <div class="score-container">
+
+                <h1>Điểm Cao</h1>
+
+                <div class="final-score" id="final-score"></div>
+                <div class="result"></div>
+
+                <h2>Bí Danh</h1>
+                <input type="text" class="txtName" />
+
+                <div>
+                    <a class="play-again" href="#" onclick="game.showReplay()">Thoát</a>
+                    <a class="main-menu" href="#" onclick="game.saveScore()">Lưu</a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="small-glows"></div>
+
+        <div class="glow">
+            <div class="sun"></div>
+        </div>
+
+        <div class="waves">
+            <div class="top_wave"></div>
+            <div class="wave1"></div>
+            <div class="wave2"></div>
+            <div class="wave3"></div>
+            <div class="wave4"></div>
+        </div>
+
+        <div class="mounts">
+            <div class="mount1"></div>
+            <div class="mount2"></div>
+        </div>
+
+        <div class="clouds"></div>
+
+        <div class="scene">
+            <div class="learn-to-play">Are You Ready ???</div>
+            <div class="score" id="score"></div>
+            <div class="ball-holder"></div>
+            <div class="F" id="sticks"></div>
+        </div>
+        <audio preload="auto" id="pop-1">
+            <source src="http://adrianpayne.me/game/assets/sounds/pop1.mp3"></source>
+        </audio>
+        <audio preload="auto" id="pop-2">
+            <source src="http://www.mariomayhem.com/downloads/sound_tracks/Super_Mario_Bros._1/08-you-re-dead.mp3"></source>
+        </audio>
+        <audio preload="auto" id="pop-3">
+                <source src="http://www.mariomayhem.com/downloads/sound_tracks/Super_Mario_Bros._1/01-main-theme-overworld.mp3" ></source>
+            </audio>
+        <div class="noise"></div>
+        <svg style="display: none;">
+            <symbol id="cup" x="0px" y="0px"
+               width="25px" height="26px" viewBox="0 0 25 26" enable-background="new 0 0 25 26" xml:space="preserve">
+          <path fill="#F26856" d="M21.215,1.428c-0.744,0-1.438,0.213-2.024,0.579V0.865c0-0.478-0.394-0.865-0.88-0.865H6.69
+              C6.204,0,5.81,0.387,5.81,0.865v1.142C5.224,1.641,4.53,1.428,3.785,1.428C1.698,1.428,0,3.097,0,5.148
+              C0,7.2,1.698,8.869,3.785,8.869h1.453c0.315,0,0.572,0.252,0.572,0.562c0,0.311-0.257,0.563-0.572,0.563
+              c-0.486,0-0.88,0.388-0.88,0.865c0,0.478,0.395,0.865,0.88,0.865c0.421,0,0.816-0.111,1.158-0.303
+              c0.318,0.865,0.761,1.647,1.318,2.31c0.686,0.814,1.515,1.425,2.433,1.808c-0.04,0.487-0.154,1.349-0.481,2.191
+              c-0.591,1.519-1.564,2.257-2.975,2.257H5.238c-0.486,0-0.88,0.388-0.88,0.865v4.283c0,0.478,0.395,0.865,0.88,0.865h14.525
+              c0.485,0,0.88-0.388,0.88-0.865v-4.283c0-0.478-0.395-0.865-0.88-0.865h-1.452c-1.411,0-2.385-0.738-2.975-2.257
+              c-0.328-0.843-0.441-1.704-0.482-2.191c0.918-0.383,1.748-0.993,2.434-1.808c0.557-0.663,1-1.445,1.318-2.31
+              c0.342,0.192,0.736,0.303,1.157,0.303c0.486,0,0.88-0.387,0.88-0.865c0-0.478-0.394-0.865-0.88-0.865
+              c-0.315,0-0.572-0.252-0.572-0.563c0-0.31,0.257-0.562,0.572-0.562h1.452C23.303,8.869,25,7.2,25,5.148
+              C25,3.097,23.303,1.428,21.215,1.428z M5.238,7.138H3.785c-1.116,0-2.024-0.893-2.024-1.99c0-1.097,0.908-1.99,2.024-1.99
+              c1.117,0,2.025,0.893,2.025,1.99v2.06C5.627,7.163,5.435,7.138,5.238,7.138z M18.883,21.717v2.553H6.118v-2.553H18.883
+              L18.883,21.717z M13.673,18.301c0.248,0.65,0.566,1.214,0.947,1.686h-4.24c0.381-0.472,0.699-1.035,0.947-1.686
+              c0.33-0.865,0.479-1.723,0.545-2.327c0.207,0.021,0.416,0.033,0.627,0.033c0.211,0,0.42-0.013,0.627-0.033
+              C13.195,16.578,13.344,17.436,13.673,18.301z M12.5,14.276c-2.856,0-4.93-2.638-4.93-6.273V1.73h9.859v6.273
+              C17.43,11.638,15.357,14.276,12.5,14.276z M21.215,7.138h-1.452c-0.197,0-0.39,0.024-0.572,0.07v-2.06
+              c0-1.097,0.908-1.99,2.024-1.99c1.117,0,2.025,0.893,2.025,1.99C23.241,6.246,22.333,7.138,21.215,7.138z"/>
+                </symbol>
+          </svg>
+
+    </div>
+    <script>
+        "use strict";
+
+        var _createClass = function() {
+            function defineProperties(target, props) {
+                for (var i = 0; i < props.length; i++) {
+                    var descriptor = props[i];
+                    descriptor.enumerable = descriptor.enumerable || false;
+                    descriptor.configurable = true;
+                    if ("value" in descriptor) descriptor.writable = true;
+                    Object.defineProperty(target, descriptor.key, descriptor);
+                }
+            }
+            return function(Constructor, protoProps, staticProps) {
+                if (protoProps) defineProperties(Constructor.prototype, protoProps);
+                if (staticProps) defineProperties(Constructor, staticProps);
+                return Constructor;
+            };
+        }();
+
+        function _classCallCheck(instance, Constructor) {
+            if (!(instance instanceof Constructor)) {
+                throw new TypeError("Cannot call a class as a function");
+            }
+        }
+
+        var Game = function() {
+            function Game() {
+                _classCallCheck(this, Game);
+                var promise =  $("#pop-1")[0].play();
+
+                if (promise !== undefined) {
+                  promise.then(_ => {
+                     $("#pop-1")[0].play();
+                  }).catch(error => {
+                    // Autoplay was prevented.
+                    // Show a "Play" button so that user can start playback.
+                  });
+                }
+
+
+                this.score = 0;
+                this.isRunning = 0; // game is not running
+
+                this.calculateScale();
+
+                this.timeline = new TimelineMax({
+                    smoothChildTiming: true
+                });
+                this.time = 1.6; // initial speed
+                this.colors = ["#FF4571", "#FFD145", "#8260F6"]; // the 3 colors used in the game
+                this.colorsRGBA = ["rgba(255, 69, 113, 1)", "rgba(255, 69, 113, 1)", "rgba(255, 69, 113, 1)"];
+                this.color = this.colors[0]; // the intial color of the ball
+                this.prevColor = null; // used as a holder to prevent ball colors from repeating
+            }
+
+            /**
+             * The game screen is scalable. I took 1200x800px as the initial scale.
+             * In order to display the game an many screen sizes properly
+             * I have to compare the player's sreen size to the initial scale,
+             * then scale the game using CSS Transform to fit the screen properly
+             * The function is called in the controller and anywhere where I need
+             * to recalculate the scale on screen resize or device rotation
+             */
+
+
+            _createClass(Game, [{
+                key: "calculateScale",
+                value: function calculateScale() {
+                    this.screen = $(window).width(); // screen width
+                    this.screenHeight = $(window).height();
+                    this.scale = this.screen > this.screenHeight ? this.screenHeight / 800 : this.screen / 1200;
+                    this.stickWidth = 180 * this.scale;
+                    this.steps = this.screen / this.stickWidth; // how many steps (stick width + margin) it takes from one end to another
+                }
+
+                /**
+                 * Creating as many sticks we need to fill the screen
+                 * from start to end of the screen. The steps property is used for that
+                 */
+
+            }, {
+                key: "generateSticks",
+                value: function generateSticks() {
+                    var numberOfSticks = Math.ceil(this.steps);
+                    for (var i = 0; i <= numberOfSticks; i++) {
+                        if (i === 0) new Stick(true);
+                        else new Stick(false);
+                    }
+                }
+            }, {
+                key: "generateBall",
+                value: function generateBall() {
+                    this.balltween = new TimelineMax({
+                        repeat: -1,
+                        paused: 1
+                    });
+                    $('.scene .ball-holder').append('<div class="ball red" id="ball"></div>');
+                    this.bounce();
+                }
+            }, {
+                key: "generateTweet",
+                value: function generateTweet() {
+                    var top = $(window).height() / 2 - 150;
+                    var left = $(window).width() / 2 - 300;
+                    window.open("https://twitter.com/intent/tweet?url=https://codepen.io/gregh/full/yVLOyO&amp;text=I scored " + this.score + " points on Coloron! Can you beat my score?&amp;via=greghvns&amp;hashtags=coloron", "TweetWindow", "width=600px,height=300px,top=" + top + ",left=" + left);
+                }
+
+                /**
+                 * The greeting when the game begins
+                 */
+
+            }, {
+                key: "intro",
+                value: function intro() {
+                    var _this = this;
+                    checkKey = true
+                    TweenMax.killAll();
+
+                    //TweenMax.to('.splash', 0.3, { opacity: 0, display: 'none', delay: 1 })
+                    
+                    $('.stop-game').css('display', 'none');
+                    $('.modal-score').css('display', 'none');
+                    $('.start-game').css('display', 'flex');
+                    $(".leatherboard").removeClass("hide")
+                    getScore()
+                    var introTl = new TimelineMax();
+                    var ball = new TimelineMax({
+                        repeat: -1,
+                        delay: 15
+                    });
+                    introTl.fromTo('.start-game .logo-holder', 0.9, {
+                        opacity: 0
+                    }, {
+                        opacity: 1
+                    }).staggerFromTo('.start-game .logo span', 0.5, {
+                        opacity: 0
+                    }, {
+                        opacity: 1
+                    }, 0.08).staggerFromTo('.start-game .bar', 1.6, {
+                        y: '+100%'
+                    }, {
+                        y: '0%',
+                        ease: Elastic.easeOut.config(1, 0.3)
+                    }, 0.08).staggerFromTo('.start-game .ball-demo', 1, {
+                        scale: 0
+                    }, {
+                        scale: 1,
+                        ease: Elastic.easeOut.config(1, 0.3)
+                    }, 0.8, 2);
+
+                    ball.fromTo('.start-game .section-1 .ball-demo', 0.5, {
+                        y: "0px"
+                    }, {
+                        y: "100px",
+                        scaleY: 1.1,
+                        transformOrigin: "bottom",
+                        ease: Power2.easeIn
+                    }).to('.start-game .section-1 .ball-demo', 0.5, {
+                        y: "0px",
+                        scaleY: 1,
+                        transformOrigin: "bottom",
+                        ease: Power2.easeOut,
+                        onStart: function onStart() {
+                            while (_this.prevColor == _this.color) {
+                                _this.color = new Color().getRandomColor();
+                            }
+                            _this.prevColor = _this.color;
+                            TweenMax.to('.start-game .section-1 .ball-demo', 0.5, {
+                                backgroundColor: _this.color
+                            });
+                        }
+                    });
+                }
+
+                /**
+                 * Display score
+                 */
+
+            }, {
+                key: "showResult",
+                value: function showResult() {
+                    var score = this.score;
+                    $('.stop-game').css('display', 'flex');
+                    $('.modal-score').css('display', 'none');
+                    $('.stop-game .final-score').text(score + '!');
+                    $('.stop-game .result').text(this.showGrade(score));
+                    $('.nominee').show();
+                    checkKey = true
+
+                    var resultTimeline = new TimelineMax();
+                    resultTimeline.fromTo('.stop-game .score-container', 0.7, {
+                        opacity: 0,
+                        scale: 0.3
+                    }, {
+                        opacity: 1,
+                        scale: 1,
+                        ease: Elastic.easeOut.config(1.25, 0.5)
+                    }).fromTo('.stop-game .final-score', 2, {
+                        scale: 0.5
+                    }, {
+                        scale: 1,
+                        ease: Elastic.easeOut.config(2, 0.5)
+                    }, 0).fromTo('.stop-game .result', 1, {
+                        scale: 0.5
+                    }, {
+                        scale: 1,
+                        ease: Elastic.easeOut.config(1.5, 0.5)
+                    }, 0.3);
+                }
+
+                /**
+                 * Takes players score and generates the cheering copy
+                 * @param  {int} score
+                 * @return {string} grade
+                 */
+
+            }, 
+            {
+                key: "saveScore",
+                value: function saveScore() {
+                    let name = $(".txtName").val()
+                    highScore(name, this.score)
+                    game.showResult()
+                }
+
+                /**
+                 * This is the initial animation
+                 * where the sticks come to the starting position
+                 * and the ball appears and falls down
+                 */
+
+            },
+            {
+                key: "showReplay",
+                value: function showReplay() {
+                    game.showResult()
+                }
+
+                /**
+                 * This is the initial animation
+                 * where the sticks come to the starting position
+                 * and the ball appears and falls down
+                 */
+
+            },
+            {
+                key: "showGrade",
+                value: function showGrade(score) {
+                    if (score > 30) return "God Life";
+                    else if (score > 20) return "Awesome";
+                    else if (score > 15) return "Toẹt Vời!";
+                    else if (score > 10) return "Good Man!";
+                    else if (score > 5) return "Hay Đấy !!";
+                    else return "Gà Quá !!!!!";
+                }
+            }, {
+                key: "start",
+                value: function start() {
+                    $(".leatherboard").addClass("hide")
+                    this.stop(); // stop the game
+
+                    $('.start-game, .stop-game, .modal-score').css('display', 'none'); // hide all the popups
+                    $('.nominee').hide();
+                    $(".txtName").val("")
+
+                    new Game();
+                    this.score = 0; // reset
+
+                    this.isRunning = 1;
+                    $("#pop-3")[0].play();
+                    $("#pop-2")[0].pause();
+                    $("#pop-2")[0].currentTime = 0;
+                    $("#pop-3")[0].currentTime = 0;
+
+                    // Clean up the stick and ball holders
+                    // and generate new ones
+                    $('#sticks, .scene .ball-holder').html('');
+                    $('#score').text(this.score);
+                    this.generateSticks();
+                    this.generateBall();
+                    this.moveToStart();
+                    this.moveScene();
+
+                    // reset timescale to normal as the game speeds up
+                    this.timeline.timeScale(1);
+                    this.balltween.timeScale(1);
+                }
+            }, {
+                key: "stop",
+                value: function stop() {
+
+                    this.isRunning = 0;
+
+                    $('.start-game, .stop-game').css('display', 'none');
+                    $('#sticks, .scene .ball-holder, #score').html('');
+                    TweenMax.killAll();
+                    if(this.score > minScore){
+                        $('.modal-score').css('display', 'flex');
+                        $('.modal-score #final-score').text(this.score + '!');
+                        checkKey = false
+                    }else{
+                        this.showResult();
+                    }
+                }
+            }, {
+                key: "scaleScreen",
+                value: function scaleScreen() {
+
+                    TweenMax.killAll(); // prevent multiple calls on resize
+
+                    var height = $(window).height();
+                    var width = $(window).width();
+
+                    this.calculateScale();
+
+                    $('.container').css('transform', 'scale(' + this.scale + ')').css('height', height / this.scale).css('width', width / this.scale).css('transformOrigin', 'left top');
+
+                    $('#sticks').width(this.screen / this.scale + 3 * this.stickWidth / this.scale);
+                }
+
+                /**
+                 * Calls the above function
+                 * If the game is running it stops and shows the score
+                 * If the game has stops it takes player to the main menu
+                 */
+
+            }, {
+                key: "scaleScreenAndRun",
+                value: function scaleScreenAndRun() {
+
+                    this.scaleScreen();
+
+                    if (this.isRunning) {
+                        this.stop();
+                    } else {
+                        this.intro();
+                    }
+                }
+
+                /**
+                 * This is the initial animation
+                 * where the sticks come to the starting position
+                 * and the ball appears and falls down
+                 */
+
+            }, {
+                key: "moveToStart",
+                value: function moveToStart() {
+                    var _this2 = this;
+
+                    var tip = new TimelineMax({
+                        delay: 2
+                    });
+
+                    tip.fromTo('.learn-to-play', 1, {
+                        scale: 0
+                    }, {
+                        scale: 1,
+                        opacity: 1,
+                        ease: Elastic.easeOut.config(1.25, 0.5)
+                    }).to('.learn-to-play', 1, {
+                        scale: 0,
+                        opacity: 0,
+                        ease: Elastic.easeOut.config(1.25, 0.5)
+                    }, 3);
+
+                    TweenMax.fromTo('#ball', this.time, {
+                        scale: 0
+                    }, {
+                        scale: 1,
+                        delay: this.time * (this.steps - 3 - 1.5),
+                        onComplete: function onComplete() {
+                            _this2.balltween.play();
+                        }
+                    });
+
+                    this.timeline.add(TweenMax.fromTo('#sticks', this.time * this.steps, {
+                        x: this.screen / this.scale
+                    }, {
+                        x: 0,
+                        ease: Power0.easeNone
+                    }));
+                }
+
+                /**
+                 * The animation that moves sticks
+                 */
+
+            }, {
+                key: "moveScene",
+                value: function moveScene() {
+                    var _this3 = this;
+
+                    this.timeline.add(TweenMax.to('#sticks', this.time, {
+                        x: '-=180px',
+                        ease: Power0.easeNone,
+                        repeat: -1,
+                        onRepeat: function onRepeat() {
+                            _this3.rearrange();
+                        }
+                    }));
+                }
+
+                /**
+                 * removes the first stick and adds one the the end
+                 * this gives the sticks an infinite movement
+                 */
+
+            }, {
+                key: "rearrange",
+                value: function rearrange() {
+
+                    var scale = this.speedUp();
+
+                    this.timeline.timeScale(scale);
+                    this.balltween.timeScale(scale);
+
+                    $('#sticks .stick').first().remove();
+                    new Stick(false);
+                }
+
+                /**
+                 * The game speeds up based on score
+                 * The GSAP timeScale() function is called on the timeline to speed up the game
+                 * This calculates how much shall the game speed up
+                 */
+
+            }, {
+                key: "speedUp",
+                value: function speedUp() {
+                    if (this.score > 30) {
+                        return 1.8;
+                    }
+                     if (this.score > 25) {
+                        return 1.68;
+                    }
+                    if (this.score > 20) {
+                        return 1.6;
+                    }
+                    if (this.score > 15) {
+                        return 1.5;
+                    } else if (this.score > 12) {
+                        return 1.4;
+                    } else if (this.score > 10) {
+                        return 1.3;
+                    } else if (this.score > 8) {
+                        return 1.2;
+                    } else if (this.score > 5) {
+                        return 1.1;
+                    }
+                    return 1;
+                }
+
+                /**
+                 * Ball bouncing animation
+                 * It checks if the ball and stick colors match
+                 * And changes the ball color
+                 */
+
+            }, {
+                key: "bounce",
+                value: function bounce() {
+                    var _this4 = this;
+
+                    this.balltween.to('#ball', this.time / 2, {
+                        y: '+=250px',
+                        scaleY: 0.7,
+                        transformOrigin: "bottom",
+                        ease: Power2.easeIn,
+                        onComplete: function onComplete() {
+                            _this4.checkColor();
+                        }
+                    }).to('#ball', this.time / 2, {
+                        y: '-=250px',
+                        scaleY: 1.1,
+                        transformOrigin: "bottom",
+                        ease: Power2.easeOut,
+                        onStart: function onStart() {
+                            while (_this4.prevColor == _this4.color) {
+                                _this4.color = new Color().getRandomColor();
+                            }
+                            _this4.prevColor = _this4.color;
+                            TweenMax.to('#ball', 0.5, {
+                                backgroundColor: _this4.color
+                            });
+                            $('#ball').removeClass('red').removeClass('yellow').removeClass('purple').addClass(new Color().colorcodeToName(_this4.color));
+                        }
+                    });
+                }
+            }, {
+                key: "checkColor",
+                value: function checkColor() {
+
+                    var ballPos = $('#ball').offset().left + $('#ball').width() / 2;
+                    var stickWidth = $('.stick').width();
+                    var score = this.score;
+                    $("#pop-1")[0].play();
+                    $('#sticks .stick').each(function() {
+                        if ($(this).offset().left < ballPos && $(this).offset().left > ballPos - stickWidth) {
+
+                            if (Color.getColorFromClass($(this)) == Color.getColorFromClass('#ball')) {
+                                // if matches increase the score
+                                score++;
+                                $('#score').text(score);
+                                TweenMax.fromTo('#score', 0.5, {
+                                    scale: 1.5
+                                }, {
+                                    scale: 1,
+                                    ease: Elastic.easeOut.config(1.5, 0.5)
+                                });
+                                $(this).addClass("correct");
+                                if ($(this).hasClass("selected")) {
+                                    $(this).removeClass("selected");
+                                    $(this).next().addClass("selected");
+                                }
+                            } else {
+                                $("#pop-2")[0].play();
+                                $("#pop-3")[0].pause();
+                                // you loose
+                                game.stop();
+                            }
+                        }
+                    });
+
+                    this.score = score;
+                }
+            }]);
+
+            return Game;
+        }();
+
+        var Stick = function() {
+            function Stick(isFirstStick) {
+                _classCallCheck(this, Stick);
+                this.stick = this.addStick(isFirstStick);
+            }
+
+            _createClass(Stick, [{
+                key: "addStick",
+                value: function addStick(isFirstStick) {
+					if (isFirstStick) {
+						this.stick = $('#sticks').append('<div class="stick inactive selected"></div>');
+					} else {
+						this.stick = $('#sticks').append('<div class="stick inactive"></div>');
+					}
+                    return this.stick;
+                }
+            }]);
+
+            return Stick;
+        }();
+
+        var Color = function() {
+            function Color() {
+                _classCallCheck(this, Color);
+
+                this.colors = ["#FF4571", "#FFD145", "#8260F6"];
+                this.effects = ["bubble", "triangle", "block"];
+                this.prevEffect = null;
+            }
+
+            _createClass(Color, [{
+                key: "getRandomColor",
+                value: function getRandomColor() {
+                    var colorIndex = Math.random() * 3;
+                    var color = this.colors[Math.floor(colorIndex)];
+                    return color;
+                }
+            }, {
+                key: "colorcodeToName",
+                value: function colorcodeToName(color) {
+                    var colors = ["#FF4571", "#FFD145", "#8260F6"];
+                    var names = ["red", "yellow", "purple"];
+                    var index = colors.indexOf(color);
+                    if (index == -1) return false;
+                    return names[index];
+                }
+
+                /**
+                 * Changes the color of an element
+                 * As we as adds verbal name of the color
+                 */
+
+            }, {
+                key: "changeColor",
+                value: function changeColor(el) {
+                    var index = el.data("index");
+                    if (index === undefined) {
+                        index = 0;
+                    } else {
+                        index += 1;
+                    }
+                    if (index == 3) index = 0;
+                    el.css('background-color', this.colors[index]).data('index', index);
+
+                    el.removeClass('red').removeClass('yellow').removeClass('purple').addClass(this.colorcodeToName(this.colors[index]));
+
+                    if (el.hasClass('inactive')) {
+                        this.setEffect(el);
+                        el.addClass('no-effect');
+                    }
+
+                    el.removeClass('inactive');
+                }
+            }, {
+                key: "getRandomEffect",
+                value: function getRandomEffect() {
+                    var effectIndex = null;
+
+                    effectIndex = Math.floor(Math.random() * 3);
+                    while (effectIndex == this.prevEffect) {
+                        effectIndex = Math.floor(Math.random() * 3);
+                    }
+
+                    this.prevEffect = effectIndex;
+                    return this.effects[effectIndex];
+                }
+
+                /**
+                 * Adds the effect specific particles to the stick
+                 */
+
+            }, {
+                key: "setEffect",
+                value: function setEffect(el) {
+                    var effect = this.getRandomEffect();
+                    el.addClass(effect + '-stick');
+                    for (var i = 1; i <= 14; i++) {
+                        if (effect == 'block') {
+                            el.append("<div class=\"" + effect + " " + effect + "-" + i + "\"><div class=\"inner\"></div><div class=\"inner inner-2\"></div></div>");
+                        } else {
+                            el.append("<div class=\"" + effect + " " + effect + "-" + i + "\"></div>");
+                        }
+                    }
+                }
+
+                /**
+                 * Since the ball and sticks have several classes
+                 * This method searches for the color class
+                 * @param el [DOM element]
+                 * @return {string} class name
+                 */
+
+            }], [{
+                key: "getColorFromClass",
+                value: function getColorFromClass(el) {
+                    var classes = $(el).attr('class').split(/\s+/);
+                    for (var i = 0, len = classes.length; i < len; i++) {
+                        if (classes[i] == 'red' || classes[i] == 'yellow' || classes[i] == 'purple') {
+                            return classes[i];
+                        }
+                    }
+                }
+            }]);
+
+            return Color;
+        }();
+
+
+        var game = new Game();
+        var color = new Color();
+        var userAgent = window.navigator.userAgent;
+        var minScore = 0
+        var checkKey = true
+        var getScore = () =>{
+                $.ajax({
+                type: 'GET',
+                url: 'http://localhost:6969/readScore',
+                headers: {'Access-Control-Allow-Origin': '*' },
+                contentType: 'application/json; charset=utf-8',
+                success: function(data){
+                    let result = JSON.parse(data)
+                    minScore = result[4].score
+                    if(result){
+                        var e = document.querySelector("ol"); 
+                        e.innerHTML = ""; 
+                        result.forEach(function(item){
+                            $(".score-game").append(`
+                                <li>
+                                    <mark>${item.userName}</mark>
+                                    <small>${item.score}</small>
+                                </li>
+                            `)
+                        })
+                    }
+                },
+                error: function (err) {
+                    console.log(err)
+                }
+            })
+        }
+
+        var highScore = (name, score) =>{
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:6969/writeScore',
+                contentType: 'application/json; charset=utf-8',
+                dataType:"json",
+                data: JSON.stringify({id: "1", userName: name, score: score, url: "Good"}),
+                success: function(data){
+                    console.log(data)
+                },
+                error: function (err) {
+					console.log(err)
+				}
+            })
+        } 
+
+        $(document).ready(function() {
+            //game.showResult();
+            game.scaleScreen();
+            game.intro();
+            //game.start();
+            //game.bounce();
+
+            if ($(window).height() < 480) {
+                $('.play-full-page').css('display', 'block');
+            }
+        });
+
+        $(document).on('click', '.stick', function() {
+            color.changeColor($(this));
+            $("#sticks").find(".stick.selected").removeClass('selected');
+            $(this).addClass('selected');
+        });
+
+        $(document).on('click', '.section-2 .bar', function() {
+            color.changeColor($(this));
+        });
+
+        $(window).resize(function() {
+            if (!userAgent.match(/iPad/i) && !userAgent.match(/iPhone/i)) {
+                game.scaleScreenAndRun();
+            }
+        });
+
+        $(window).on("orientationchange", function() {
+            game.scaleScreenAndRun();
+        });
+
+		$(document).on('keypress', function(e) {
+			if (e.key === ' ' || e.key === 'Spacebar' || e.key === 'Enter') {
+                // e.preventDefault();
+                if (game.isRunning) {
+                    color.changeColor($("#sticks").find(".stick.selected"));
+                } else if(check == true){
+                    game.start();
+                }
+            }
+
+        });
+
+        $(document).on('keydown', function(e) {
+            if (e.keyCode == '37') {
+                // left arrow
+                if (!$("#sticks").find(".stick.selected").is(":first-child")) {
+                    e.preventDefault();
+                    let currentStick = $("#sticks").find(".stick.selected");
+                    let prevStick = currentStick.prev();
+                    if (!prevStick.hasClass("correct")) {
+                        currentStick.removeClass("selected");
+                        prevStick.addClass("selected");
+                    }
+                }
+            } else if (e.keyCode == '39') {
+                // right arrow
+                if (!$("#sticks").find(".stick.selected").is(":last-child")) {
+                    e.preventDefault();
+                    $("#sticks").find(".stick.selected").removeClass('selected').next().addClass("selected");
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
