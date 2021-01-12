@@ -105,24 +105,28 @@ app.post('/writeScore', (req, res) => {
     axios.get('http://thienstyle.atwebpages.com/high_score.txt')
     .then(dataRead => {
         let object = dataRead && JSON.parse(JSON.stringify(dataRead.data))
-        console.log(object, "object")
         object = object.sort((a, b) => a.score - b.score)
+        console.log(object, "object")
         if(parseInt(data.score) > parseInt(object[0].score)){
             object[0].userName = data.userName
             object[0].score = data.score
             object[0].url = data.url
+            // object[0].userName = "Trùm"
+            // object[0].score = 22
+            // object[0].url = "url"
             axios.post('http://thienstyle.atwebpages.com/highscore.php', {
+                headers: {"Access-Control-Allow-Origin": "*"},
                 body: JSON.stringify(object)
             })
             .then(function (response) {
-                console.log("oke");
+                return res.send("oke.");
             })
             .catch(function (error) {
                 console.log(error);
             });
         }
         else {
-            return
+            return res.send("Done.");
         }
     })
     .catch(error => {
