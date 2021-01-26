@@ -1337,7 +1337,7 @@
             max-width: 100%;
         }
         .section-customize{
-            min-width: 300px;
+            min-width: 250px;
         }
         .leatherboard{
             z-index: 99888;
@@ -2212,47 +2212,82 @@ design by https://www.behance.net/vahanhovh
         var minScore = 0
         var checkKey = true
         var getScore = () =>{
-                $.ajax({
-                type: 'GET',
-                url: 'http://localhost:6969/readScore',
-                headers: {'Access-Control-Allow-Origin': '*' },
-                contentType: 'application/json; charset=utf-8',
-                success: function(data){
-                    let result = JSON.parse(data)
-                    minScore = result[4].score
-                    if(result){
-                        var e = document.querySelector("ol"); 
-                        e.innerHTML = ""; 
-                        result.forEach(function(item){
-                            $(".score-game").append(`
-                                <li>
-                                    <mark>${item.userName}</mark>
-                                    <small>${item.score}</small>
-                                </li>
-                            `)
-                        })
-                    }
-                },
-                error: function (err) {
-                    console.log(err)
-                }
-            })
+		    let xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+			  if (this.readyState == 4 && this.status == 200) {
+                let result = JSON.parse(this.responseText)
+                result = result.sort((a, b) => b.score - a.score)
+				minScore = result[4].score
+				if(result){
+					var e = document.querySelector("ol"); 
+					e.innerHTML = ""; 
+					result.forEach(function(item){
+						$(".score-game").append(`
+							<li>
+								<mark>${item.userName}</mark>
+								<small>${item.score}</small>
+							</li>
+						`)
+					})
+				}
+			  }
+			}
+			xmlhttp.open("GET", "http://thienstyle.atwebpages.com/readscore.php", true);
+			xmlhttp.send();
+			// $.ajax({
+            //     type: 'GET',
+            //     url: 'https://highscoreserve.herokuapp.com/readScore',
+            //     headers: {'Access-Control-Allow-Origin': '*', },
+            //     contentType: 'application/json; charset=utf-8',
+            //     success: function(data){
+            //         let result = JSON.parse(data)
+            //         minScore = result[4].score
+            //         if(result){
+            //             var e = document.querySelector("ol"); 
+            //             e.innerHTML = ""; 
+            //             result.forEach(function(item){
+            //                 $(".score-game").append(`
+            //                     <li>
+            //                         <mark>${item.userName}</mark>
+            //                         <small>${item.score}</small>
+            //                     </li>
+            //                 `)
+            //             })
+            //         }
+            //     },
+            //     error: function (err) {
+            //         console.log(err)
+            //     }
+            // })
         }
 
         var highScore = (name, score) =>{
-            $.ajax({
-                type: 'POST',
-                url: 'http://localhost:6969/writeScore',
-                contentType: 'application/json; charset=utf-8',
-                dataType:"json",
-                data: JSON.stringify({id: "1", userName: name, score: score, url: "Good"}),
-                success: function(data){
-                    console.log(data)
-                },
-                error: function (err) {
-					console.log(err)
-				}
-            })
+            let data = JSON.parse(JSON.stringify({id: "1", userName: name, score: score, url: "Good"}))
+            let xmlhttp = new XMLHttpRequest();
+			xmlhttp.onreadystatechange = function() {
+                let object = null
+			    if (this.readyState == 4 && this.status == 200) {
+                    object = JSON.parse(this.responseText)
+                    object = object.sort((a, b) => a.score - b.score)
+                    if(parseInt(data.score) > parseInt(object[0].score)){
+                        object[0].userName = data.userName
+                        object[0].score = data.score
+                        object[0].url = data.url
+                    }
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://thienstyle.atwebpages.com/highscore.php',
+                        dataType: 'json',
+                        contentType: 'application/json; charset=utf-8',
+                        data: JSON.stringify(object),
+                        success: function(data){
+                            console.log(data)
+                        },
+                    })
+                }
+			}
+			xmlhttp.open("GET", "http://thienstyle.atwebpages.com/readscore.php", true);
+			xmlhttp.send();
         } 
 
         $(document).ready(function() {
@@ -2292,7 +2327,7 @@ design by https://www.behance.net/vahanhovh
                 // e.preventDefault();
                 if (game.isRunning) {
                     color.changeColor($("#sticks").find(".stick.selected"));
-                } else if(check == true){
+                } else if(checkKey == true){
                     game.start();
                 }
             }
